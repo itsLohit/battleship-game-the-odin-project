@@ -1,6 +1,7 @@
 const Ship = (() => {
   // Creating A Ship
-  const createShip = (shipLength) => {
+  const createShip = (shipName, shipLength) => {
+    const name = shipName;
     const length = shipLength;
     let hits = 0;
     let sunkStatus = false;
@@ -10,9 +11,11 @@ const Ship = (() => {
     function isSunk() {
       return sunkStatus;
     }
+
     function getLength() {
       return length;
     }
+
     function getHits() {
       return hits;
     }
@@ -26,11 +29,17 @@ const Ship = (() => {
       }
     }
 
+    function resetHitsAndSunkStatus() {
+      hits = 0;
+      sunkStatus = false;
+    }
+
     return {
       isSunk,
       getLength,
       getHits,
       hit,
+      resetHitsAndSunkStatus,
     };
   };
   return createShip;
