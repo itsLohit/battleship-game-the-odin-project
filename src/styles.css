@@ -3,3 +3,26 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  background: #e0e0e0;
+  border: 1px solid black;
+}
+
+.cell.ship { background: #7ca6e6; }
+.cell.hit { background: #c0392b; }
+.cell.miss { background: #95a5a6; }
+
+.button {
+  background: #e0e0e0;
+  border: 1px solid black;
+}

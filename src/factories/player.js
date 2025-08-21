@@ -14,7 +14,11 @@ const player = (playerName, playerType) => {
     const possibleAttackCells = [];
     for (let row = 0; row < board.length; row++) {
       for (let col = 0; col < board[row].length; col++) {
-        if (board[row][col] === 'x') {
+        if (
+          board[row][col] === 'x' ||
+          (typeof board[row][col] === 'object' &&
+            board[row][col].status !== 'hit')
+        ) {
           possibleAttackCells.push([row, col]);
         }
       }
