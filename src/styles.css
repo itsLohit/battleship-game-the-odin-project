@@ -1,108 +1,247 @@
+@font-face {
+  font-family: 'TitleFont';
+  src: url(./fonts/KnightWarrior-w16n8.otf);
+}
+@font-face {
+  font-family: 'OtherFont';
+  src: url(./fonts/SupremeSpike-KVO8D.otf);
+}
+
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 body {
+  background-color: ;
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: 'OtherFont', 'Times New Roman', Times, serif;
+  background: #1d1d1d;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 3rem;
-}
-
-.game-end-message {
-  font-size: xx-large;
-}
-.top-banner {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 1rem;
-  min-height: 10rem;
+  font-size: 16px; 
 }
 
 h1 {
-  font-size: xx-large;
+  font-family: 'TitleFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 5rem;
   text-align: center;
+  margin: 2rem 0 0.2rem 0;
+  color: #208c8c;
+}
+h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0 0.5rem 0;
+  color: #208c8c;
+}
+.message-banner {
+  margin: 1.5rem 0 1.5rem 0;
+  padding: 0.85rem 0.85rem;
+  background: #fff09a;
+  color: #204080;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  min-height: 2rem;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1;
+  transition: background .13s, outline .13s;
+}
+.message-banner.active {
+  background: #44e83e;
+  color: #023704;
+}
+.game-end-message {
+  font-size: 2rem;
+  margin: 2rem 0;
+  color: #c0392b;
+  font-weight: bold;
 }
 
-h2 {
-  text-align: center;
+.top-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  max-width: 35rem;
+}
+#ship-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  min-height: 2.5rem;
+}
+.ship-draggable {
+  border: 2px solid #fa0202;
+  padding: 0.5em 1.5em;
+  background: #efa742;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  cursor: grab;
+  user-select: none;
+  transition: background .13s, outline .13s;
+}
+.ship-draggable.selected {
+  color: #032f32;
+  outline: 2.5px solid #f2e607;
+  background: #cae9ea;
+  border-radius: 0.50em;
+}
+
+#orientation-toggle {
+  background-color: #3c4748;
+  border-radius: 1em;
+  height: 2em;
+  min-width: 6em;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #cae9ea;
+  border: 2px solid #273B40;
+  margin: 0.5rem 0;
+  padding: 0.20em 1.5em;
+  cursor: pointer;
+  box-shadow: 0 1.5px 7px rgba(22,32,55,0.09);
+  transition: background .15s;
+}
+#orientation-toggle:hover {
+  background: #208c8c;
 }
 
 .game-boards {
-    margin: auto;
-    display: flex;
-    position: sticky;
-    flex-wrap: wrap;
-    gap: 5rem;
-}
-.grid {
-  display: grid;
-  grid-template-rows: repeat(10, 30px);
-  grid-template-columns: repeat(10, 30px);
-  gap: 20px;
-}
-
-#ship-tray {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: 5rem;
+  gap: 2.2rem;
   justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 67rem;
+}
+.game-boards > div {
+  flex: 1 1 21rem;
+  min-width: 12rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
+.grid {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.37em;
+  margin-top: 0.3rem;
+  border-radius: 0.6em;
+  background: #1d1d1d;
+  box-shadow: 0 2px 8px rgba(20,33,40,0.06);
+  width: 23rem;
+  height: 23rem;
+  max-width: 95vw;
+  max-height: 95vw;
+}
 .cell {
-  width: 50px;
-  height: 50px;
-  background: #e0e0e0;
-  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  min-width: 1.7rem;
+  min-height: 1.7rem;
+  max-width: 3rem;
+  max-height: 3rem;
+  background: #cae9ea;
+  border: 1.2px solid #585858;
+  border-radius: 0.35em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background .10s, border .10s;
 }
-
-.cell.ship { background: #7ca6e6; }
-.cell.hit { background: #c0392b; }
-.cell.miss { background: #95a5a6; }
-
-.button {
-  background: #e0e0e0;
-  border: 1px solid black;
+.cell.ship { 
+  background: Green; 
 }
-
+.cell.hit  { background: #c0392b; }
+.cell.miss { background: #208c8c; }
 .cell.preview-valid {
-  background: #3fdc3f;
+  background: #3cb00e !important;
   opacity: 0.7;
 }
 .cell.preview-invalid {
-  background: #ec1818;
+  background: #ec1818 !important;
   opacity: 0.8;
 }
-
-.ship-draggable.selected {
-  outline: 2px solid rgb(49, 106, 220);
-  background: #ddefff;
-  border-radius: 5%;
+.cell:hover {
+  border: 2px solid #cae9ea;
+  background: #44e8e8;
 }
 
-.message-banner {
-  margin: 1rem 0 2rem 0;
-  padding: 0.8rem 2rem;
-  background: #f0f4ff;
-  color: #204080;
-  border-radius: 6px;
-  font-size: 1.15rem;
-  min-height: 2rem;
-  text-align: center;
-  font-weight: 500;
-  transition: background 0.2s;
+.button, .restartButton {
+  color: #cae9ea;
+  background: #444d4e;
+  border: 1.2px solid #cae9ea;
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.35rem 1rem;
+  padding: 0.32rem 1rem;
+  cursor: pointer;
+  transition: background .11s;
 }
-.message-banner.active {
-  background: #aaf0a7;
-  color: #155717;
+.button:hover, .restartButton:hover {
+  background: #273b40;
 }
 
-.ship-draggable {
-  border: solid #155717 1px;
-  padding: 2px;
+/* --- RESPONSIVENESS --- */
+@media (max-width: 900px) {
+  .game-boards {
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    max-width: 100vw;
+  }
+  .game-boards > div {
+    align-items: center;
+    width: 100%;
+  }
+  .grid {
+    width: 96vw;
+    height: 96vw;
+    max-width: 23rem;
+    max-height: 23rem;
+    min-width: 12rem;
+    min-height: 12rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.15rem; 
+    gap: 0.9rem;
+    min-width: 100vw;
+  }
+  h1 { font-size: 3rem; }
+  .top-banner { max-width: 98vw; }
+  .game-boards { gap: 0.55rem; max-width: 100vw; }
+  .grid {
+    width: 98vw;
+    height: 98vw;
+    max-width: 18rem;
+    max-height: 18rem;
+    min-width: 9rem;
+    min-height: 9rem;
+    gap: 0.33em;
+  }
+  .cell { min-width: 1.1rem; min-height: 1.1rem; max-width: 2.2rem; max-height: 2.2rem; }
+  .ship-draggable { font-size: 0.87rem; padding: 0.19em 0.7em; }
+  .message-banner { font-size: 0.88rem; padding: 0.19rem 0.7rem; }
+  #orientation-toggle { min-width: 3.7rem; font-size: 0.85rem; height: 1.2rem; }
+}
+
+#ship-tray::-webkit-scrollbar, .grid::-webkit-scrollbar {
+  display: none;
 }
