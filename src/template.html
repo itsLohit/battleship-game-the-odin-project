@@ -6,7 +6,27 @@
     <title>BattleShip</title>
   </head>
   <body>
-    <div id="user-board"></div>
-    <div id="computer-board"></div>
+    <h1>BattleShip Game</h1>
+    <div class="top-banner">
+      <div id="ship-tray">
+      <div class="ship-draggable" draggable="true" data-name="carrier" data-length="5">Carrier (5)</div>
+      <div class="ship-draggable" draggable="true" data-name="battleship" data-length="4">Battleship (4)</div>
+      <div class="ship-draggable" draggable="true" data-name="cruiser" data-length="3">Cruiser (3)</div>
+      <div class="ship-draggable" draggable="true" data-name="submarine" data-length="3">Submarine (3)</div>
+      <div class="ship-draggable" draggable="true" data-name="destroyer" data-length="2">Destroyer (2)</div>
+    </div>
+    <button id="orientation-toggle">Horizontal</button>
+    <div id="message-banner" class="message-banner"></div>
+    </div>
+    <div class="game-boards">
+      <div>
+        <h2>Your Board</h2>
+        <div id="user-board"></div>
+      </div>
+      <div>
+        <h2>Computer's Board</h2>
+        <div id="computer-board"></div>
+      </div>
+    </div>
   </body>
 </html>

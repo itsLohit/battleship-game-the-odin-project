@@ -1,5 +1,3 @@
-const ship = require('../factories/ship');
-
 const gameBoard = (() => {
   const createGameBoard = () => {
     // Board Creation

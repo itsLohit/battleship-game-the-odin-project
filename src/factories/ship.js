@@ -20,6 +20,10 @@ const Ship = (() => {
       return hits;
     }
 
+    function getName() {
+      return name;
+    }
+
     //Ship State Modifiers
 
     function hit() {
@@ -40,6 +44,7 @@ const Ship = (() => {
       getHits,
       hit,
       resetHitsAndSunkStatus,
+      getName,
     };
   };
   return createShip;

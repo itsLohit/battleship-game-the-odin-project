@@ -17,8 +17,6 @@ const GameController = (() => {
     const computerCarrier = ship('carrier', 3);
     const computerSubmarine = ship('submarine', 4);
 
-    user.gameBoard.placeShip(userCarrier, 0, 2, 'horizontal');
-    user.gameBoard.placeShip(userSubmarine, 1, 2, 'horizontal');
     computer.gameBoard.placeShip(computerCarrier, 3, 2, 'vertical');
     computer.gameBoard.placeShip(computerSubmarine, 3, 5, 'vertical');
   }
@@ -57,6 +55,35 @@ const GameController = (() => {
     return null;
   }
 
+  function placeComputerShips() {
+    computer.gameBoard.resetBoard();
+    const shipsToPlace = [
+      { name: 'carrier', length: 5 },
+      { name: 'battleship', length: 4 },
+      { name: 'cruiser', length: 3 },
+      { name: 'submarine', length: 3 },
+      { name: 'destroyer', length: 2 },
+    ];
+    const orientations = ['horizontal', 'vertical'];
+    shipsToPlace.forEach((computerShip) => {
+      let placed = false;
+
+      while (!placed) {
+        const randomOrientation =
+          orientations[Math.floor(Math.random() * orientations.length)];
+        const row = Math.floor(Math.random() * 10);
+        const col = Math.floor(Math.random() * 10);
+        const shipObj = ship(computerShip.name, computerShip.length);
+        placed = computer.gameBoard.placeShip(
+          shipObj,
+          row,
+          col,
+          randomOrientation
+        );
+      }
+    });
+  }
+
   return {
     startGame,
     playerAttack,
@@ -65,6 +92,7 @@ const GameController = (() => {
     changeCurrentPlayer,
     computerTurn,
     checkWinner,
+    placeComputerShips,
   };
 })();
 
